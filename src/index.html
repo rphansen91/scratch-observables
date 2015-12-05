@@ -1,0 +1,25 @@
+<html>
+  <head>
+    <title>Scratch</title>
+
+    <link rel="stylesheet" href="https://rawgit.com/urish/angular2-material-build/master/angular2_material.css" />
+
+    <script src=></script>
+    <script src="../node_modules/systemjs/dist/system.src.js"></script>
+    <script src="../node_modules/angular2/bundles/angular2.dev.js"></script>
+    <script>
+      System.config({
+        map: {
+          'rx.all': 'https://cdnjs.cloudflare.com/ajax/libs/rxjs/3.1.1/rx.all.js',
+          'pouch': "http://cdn.jsdelivr.net/pouchdb/5.1.0/pouchdb.min.js"
+        },
+        packages: {'app': {defaultExtension: 'js'}}
+      });
+      System.import('app/app');
+    </script>
+    <style>body {-webkit-tap-highlight-color: rgba(0,0,0,0);-webkit-touch-callout: none;-webkit-user-select: none;}</style>
+  </head>
+  <body>
+    <scratch-builder>loading...</scratch-builder>
+  </body>
+</html>
