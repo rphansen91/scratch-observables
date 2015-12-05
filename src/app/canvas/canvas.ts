@@ -6,7 +6,6 @@ import {Instructions} from '../blueprint/instructions';
 import {Cursor} from '../cursor/cursor';
 import {Colors} from '../colors/pallet';
 import {ImageSelector} from '../image/selector'
-import {MdInput, MdInputContainer} from 'material';
 
 @Component({
 	selector: "canvas-control",
@@ -19,7 +18,7 @@ import {MdInput, MdInputContainer} from 'material';
 	],
 	directives: [LoadCanvas, Instructions, Cursor, ImageSelector, Colors, NgFor, NgIf, FORM_DIRECTIVES],
 	template: `
-		<div class="canvasContainer" (mousedown)="start($event)" (mouseup)="stop()" (mouseleave)="stop()" (mousemove)="movement($event)" (touchstart)="start($event)" (touchend)="start($event)" (touchmove)="movement($event)">
+		<div class="canvasContainer" (mousedown)="start($event)" (mouseup)="stop()" (mouseleave)="stop()" (mousemove)="movement($event)" (touchstart)="start($event)" (touchend)="stop()" (touchmove)="movement($event)">
 			<cursor [position]="position" [size]="size"></cursor>
 
 			<load-canvas [drawing]="drawing" class="fullContainer"><load-canvas>
@@ -69,8 +68,10 @@ export class CanvasControl {
 	}
 
 	movement(event: any) {
-		var x = Number(event.x - this.offsetLeft)
-		var y = Number(event.y - this.offsetTop)
+		var xPosition = (typeof event.x == "number") ? event.x : event.target.clientWidth
+		var yPosition = (typeof event.y == "number") ? event.y : event.target.clientHeight
+		var x = xPosition - this.offsetLeft;
+		var y = yPosition - this.offsetTop;
 
 		this.position = new Position(x, y)
 		this.drawing.addPoint(x, y)
