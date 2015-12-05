@@ -18,7 +18,7 @@ import {ImageSelector} from '../image/selector'
 	],
 	directives: [LoadCanvas, Instructions, Cursor, ImageSelector, Colors, NgFor, NgIf, FORM_DIRECTIVES],
 	template: `
-		<div class="canvasContainer" (mousedown)="start($event)" (mouseup)="stop()" (mouseleave)="stop()" (mousemove)="movement($event)" (touchstart)="start($event)" (touchend)="stop()" (touchmove)="movement($event)">
+		<div class="canvasContainer" (mousedown)="start($event)" (mouseup)="stop()" (mouseleave)="stop()" (mousemove)="movement($event)">
 			<cursor [position]="position" [size]="size"></cursor>
 
 			<load-canvas [drawing]="drawing" class="fullContainer"><load-canvas>
