@@ -19,7 +19,7 @@ import {MdInput, MdInputContainer} from 'material';
 	],
 	directives: [LoadCanvas, Instructions, Cursor, ImageSelector, Colors, NgFor, NgIf, FORM_DIRECTIVES],
 	template: `
-		<div class="canvasContainer" (mousedown)="start($event)" (mouseup)="stop()" (mouseleave)="stop()" (mousemove)="movement($event)">
+		<div class="canvasContainer" (mousedown)="start($event)" (mouseup)="stop()" (mouseleave)="stop()" (mousemove)="movement($event)" (touchstart)="start($event)" (touchend)="start($event)" (touchmove)="movement($event)">
 			<cursor [position]="position" [size]="size"></cursor>
 
 			<load-canvas [drawing]="drawing" class="fullContainer"><load-canvas>
