@@ -18,7 +18,7 @@ import {ImageSelector} from '../image/selector'
 	],
 	directives: [LoadCanvas, Instructions, Cursor, ImageSelector, Colors, NgFor, NgIf, FORM_DIRECTIVES],
 	template: `
-		<div class="canvasContainer" (mousedown)="start($event)" (mouseup)="stop()" (mouseleave)="stop()" (mousemove)="movement($event)">
+		<div class="canvasContainer" (mousedown)="start($event)" (mouseup)="stop()" (mouseleave)="stop()" (mousemove)="movement($event)" (touchstart)="start($event)" (touchmove)="movement($event)" (touchend)="stop()" (touchleave)="stop()">
 			<cursor [position]="position" [size]="size"></cursor>
 
 			<load-canvas [drawing]="drawing" class="fullContainer"><load-canvas>
@@ -68,8 +68,10 @@ export class CanvasControl {
 	}
 
 	movement(event: any) {
-		var xPosition = (typeof event.x == "number") ? event.x : event.target.clientWidth
-		var yPosition = (typeof event.y == "number") ? event.y : event.target.clientHeight
+
+		var xPosition = (typeof event.x == "number") ? event.x : event.touches[0].clientX
+		var yPosition = (typeof event.y == "number") ? event.y : event.touches[0].clientY
+
 		var x = xPosition - this.offsetLeft;
 		var y = yPosition - this.offsetTop;
 
