@@ -8,7 +8,7 @@ import {Scratches} from './pouch/scratches'
     selector: 'scratch-builder',
     directives: [CanvasControl, CanvasReplay, NgIf, NgFor],
     styles: [
-		".scratchContainer {position: absolute; top: 0; bottom: 0; left: 0; right: 0; background-color: rgba(0,0,0,1);}",
+		".scratchContainer {position: absolute; top: 0; bottom: 0; left: 0; right: 0; background-color: rgba(0,0,0,1);height: 100%;width: 100%;overflow: hidden;}",
 		".scratchCanvasContainer {position: absolute; margin: auto; top: 5%; left: 0; right: 0; width: 90%; height: 65%; background-color: rgba(255,255,255,0.15); border-radius: 20px;}",
 		".scratchReplayContainer {position: absolute; margin: auto; top: 5%; left: 0; right: 0; width: 90%; height: 65%; background-color: rgba(255,255,255,0); border-radius: 20px;}",
 		".controls {position: absolute; margin: auto; bottom: 0; left: 0; right: 0; height: 30%; width: 90%;}",
