@@ -8,8 +8,6 @@ export class Pouch {
 
 	constructor (public name: string, public remoteCouch?: string) {
 		this.db = new PouchDB(this.name);
-		debugger;
-		console.log(PouchAuth)
 	}
 
 	subscribe (callback: any) {

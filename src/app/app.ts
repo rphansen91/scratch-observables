@@ -50,9 +50,9 @@ class ScratchBuilder {
 		this.scratches = Scratches.getInstance();
 
 		var that = this;
-		
+
 		that.scratches.all.get()
-			.then((all) => { that.all = all; })
+			.then((all) => { console.log(all); that.all = all; })
 		
 		that.scratches.all.changes()
 		.on('change', function(change) {

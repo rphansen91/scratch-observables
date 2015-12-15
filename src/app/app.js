@@ -21,7 +21,7 @@ var ScratchBuilder = (function () {
         this.scratches = scratches_1.Scratches.getInstance();
         var that = this;
         that.scratches.all.get()
-            .then(function (all) { that.all = all; });
+            .then(function (all) { console.log(all); that.all = all; });
         that.scratches.all.changes()
             .on('change', function (change) {
             that.scratches.all.get()
