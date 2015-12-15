@@ -49,7 +49,19 @@ class ScratchBuilder {
 		this.drawing = Drawing.getInstance()
 		this.scratches = Scratches.getInstance();
 
-		this.scratches.all.subscribe((all) => { this.all = all; })
+		var that = this;
+		
+		that.scratches.all.get()
+			.then((all) => { that.all = all; })
+		
+		that.scratches.all.changes()
+		.on('change', function(change) {
+			that.scratches.all.get()
+			.then((all) => { that.all = all; })
+			console.log(change)
+		}).on('error', function(err) {
+			console.log(err)
+		})
 	}
 
 	setInstructions(instructions: BluePrint[]) {
@@ -64,7 +76,8 @@ class ScratchBuilder {
 		if (name && name.length) {
 			this.scratches.saveNewScratch(name, this.drawing.instructions)
 			.then(()=>{
-				this.scratches.all.subscribe((all) => { this.all = all; })
+				this.scratches.all.get()
+				.then((all) => { this.all = all; })
 			})
 		}
 

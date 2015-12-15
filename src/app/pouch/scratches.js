@@ -2,7 +2,8 @@ var db_1 = require("./db");
 var Scratches = (function () {
     function Scratches() {
         if (Scratches.isCreating) {
-            this.all = new db_1.Pouch("ALL_MY_SCRATCHES");
+            this.all = new db_1.Pouch("https://rphansen91.cloudant.com/all_my_scratches");
+            console.log(this.all);
         }
         else {
             throw new Error("Get all scrathes using Scratches.getInstance().all.subscribe()");

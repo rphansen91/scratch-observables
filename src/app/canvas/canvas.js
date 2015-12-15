@@ -39,6 +39,7 @@ var CanvasControl = (function () {
         this.drawing.endNewLine();
     };
     CanvasControl.prototype.movement = function (event) {
+        console.log(event);
         var xPosition = (typeof event.x == "number") ? event.x : event.touches[0].clientX;
         var yPosition = (typeof event.y == "number") ? event.y : event.touches[0].clientY;
         var x = xPosition - this.offsetLeft;

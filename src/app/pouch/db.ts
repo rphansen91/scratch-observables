@@ -1,5 +1,6 @@
 import * as PouchDB from "pouch";
 import * as Rx from 'rx.all';
+import * as PouchAuth from "pouch-authentication"
 
 export class Pouch {
 	db: any;
@@ -7,6 +8,8 @@ export class Pouch {
 
 	constructor (public name: string, public remoteCouch?: string) {
 		this.db = new PouchDB(this.name);
+		debugger;
+		console.log(PouchAuth)
 	}
 
 	subscribe (callback: any) {
@@ -25,6 +28,16 @@ export class Pouch {
 				}
 			})
 		})
+	}
+
+	changes () {
+		var options = {
+			since: 'now',
+			live: true,
+			include_docs: true
+		};
+
+		return this.db.changes(options)
 	}
 
 	get () {

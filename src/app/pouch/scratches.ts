@@ -9,7 +9,8 @@ export class Scratches {
 
 	constructor () {
 		if (Scratches.isCreating) {
-			this.all = new Pouch("ALL_MY_SCRATCHES")
+			this.all = new Pouch("https://rphansen91.cloudant.com/all_my_scratches")
+			console.log(this.all)
 		} else {
 			throw new Error("Get all scrathes using Scratches.getInstance().all.subscribe()")
 		}

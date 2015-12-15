@@ -1,10 +1,13 @@
 var PouchDB = require("pouch");
 var Rx = require('rx.all');
+var PouchAuth = require("pouch-authentication");
 var Pouch = (function () {
     function Pouch(name, remoteCouch) {
         this.name = name;
         this.remoteCouch = remoteCouch;
         this.db = new PouchDB(this.name);
+        debugger;
+        console.log(PouchAuth);
     }
     Pouch.prototype.subscribe = function (callback) {
         return Rx.Observable.fromPromise(this.get())
@@ -20,6 +23,14 @@ var Pouch = (function () {
                 }
             });
         });
+    };
+    Pouch.prototype.changes = function () {
+        var options = {
+            since: 'now',
+            live: true,
+            include_docs: true
+        };
+        return this.db.changes(options);
     };
     Pouch.prototype.get = function () {
         var dataBase = this;

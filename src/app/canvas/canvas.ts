@@ -68,7 +68,7 @@ export class CanvasControl {
 	}
 
 	movement(event: any) {
-
+		console.log(event)
 		var xPosition = (typeof event.x == "number") ? event.x : event.touches[0].clientX
 		var yPosition = (typeof event.y == "number") ? event.y : event.touches[0].clientY
 

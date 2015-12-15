@@ -15,12 +15,21 @@ var drawing_1 = require('./blueprint/drawing');
 var scratches_1 = require('./pouch/scratches');
 var ScratchBuilder = (function () {
     function ScratchBuilder() {
-        var _this = this;
         this.currentLine = 0;
         this.editing = true;
         this.drawing = drawing_1.Drawing.getInstance();
         this.scratches = scratches_1.Scratches.getInstance();
-        this.scratches.all.subscribe(function (all) { _this.all = all; });
+        var that = this;
+        that.scratches.all.get()
+            .then(function (all) { that.all = all; });
+        that.scratches.all.changes()
+            .on('change', function (change) {
+            that.scratches.all.get()
+                .then(function (all) { that.all = all; });
+            console.log(change);
+        }).on('error', function (err) {
+            console.log(err);
+        });
     }
     ScratchBuilder.prototype.setInstructions = function (instructions) {
         this.drawing.setNewInstructions(instructions);
@@ -33,7 +42,8 @@ var ScratchBuilder = (function () {
         if (name && name.length) {
             this.scratches.saveNewScratch(name, this.drawing.instructions)
                 .then(function () {
-                _this.scratches.all.subscribe(function (all) { _this.all = all; });
+                _this.scratches.all.get()
+                    .then(function (all) { _this.all = all; });
             });
         }
     };
